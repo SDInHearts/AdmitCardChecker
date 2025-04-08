@@ -1,0 +1,29 @@
+name: Daily Admit Card Checker
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  # Runs daily at 8:00 AM GMT+6 (2:00 AM UTC)
+  workflow_dispatch:      # Allows manual run from GitHub UI
+
+jobs:
+  check-admit-card:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run Admit Card Check
+        run: node checkAdmitCard.js
+
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}
