@@ -65,7 +65,7 @@ async function checkAdmitCard(url) {
 // 🚀 Main
 (async () => {
     let allSuccessful = true;
-    let message = `📢 *Admit Card Check Result*\n\n`;
+    let message = `📢 *Checker List*\n\n`;
 
     for (const url of urls) {
         const { result, title, link } = await checkAdmitCard(url);
@@ -78,5 +78,5 @@ async function checkAdmitCard(url) {
     }
 
     await sendTelegramMessage(botToken, chatId, message);
-    process.exit(allSuccessful ? 0 : 1);
+    // process.exit(allSuccessful ? 0 : 1);
 })();
